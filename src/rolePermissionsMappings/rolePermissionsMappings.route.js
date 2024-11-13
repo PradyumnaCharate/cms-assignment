@@ -25,10 +25,10 @@ rolepermissionsmappingRouter.get(
 );
 
 rolepermissionsmappingRouter.post(
-  "/role-permissions-mapping",
-  // authentication,
-  // authorization(PermissionCodes.READ_ROLE_PERMISSION),
-  rolepermissionsmappingController.create
+  "/role-permissions-mapping/:id",
+  authentication,
+  authorization(PermissionCodes.READ_ROLE_PERMISSION),
+  rolepermissionsmappingController.insertMany
 );
 
 rolepermissionsmappingRouter.delete(

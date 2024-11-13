@@ -26,13 +26,11 @@ class rolepermissionsmappingController extends Controller {
       permissionId: permission,
     }));
 
-    await this.service.insertMany(permissionIds);
+    const items = await this.service.createMany(permissionIds);
 
-    new responseHandler(
-      { user, token },
-      "Added successfully!",
-      200
-    ).sendResponse(res);
+    new responseHandler({ items }, "Added successfully!", 200).sendResponse(
+      res
+    );
   });
 
   getMyPermissions = catchAsyncError(async (req, res, next) => {

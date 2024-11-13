@@ -27,22 +27,22 @@ permissionRouter.get(
 
 permissionRouter.post(
   "/permission",
-  // authentication,
-  // createdUpdatedBy("create"),
+  authentication,
+  createdUpdatedBy("create"),
   permissionController.create
 );
 
 permissionRouter.put(
   "/permissions/:id",
-  // authentication,
-  // authorization(5650), // Replace with the appropriate authorization code
+  authentication,
+  authorization(5650),
   permissionController.update
 );
 
 permissionRouter.delete(
   "/permissions/:id",
-  // authentication,
-  // authorization(5676), // Replace with the appropriate authorization code
+  authentication,
+  authorization(5676),
   permissionController.delete
 );
 
