@@ -2,6 +2,7 @@ const catchAsyncError = require("../utils/catchAsyncError");
 const ErrorHandler = require("../utils/errorHandler");
 const { itemsPerPage } = require("../config/variables");
 const { Op } = require("sequelize");
+const { isDeleted } = require("./commonDatabaseFields");
 
 class Service {
   constructor(model) {
@@ -24,7 +25,7 @@ class Service {
     const limit = parseInt(resultsPerPage);
     const order = [[sortField, sortOrder.toUpperCase()]];
 
-    const where = {};
+    const where = { isDeleted: false };
 
     if (Array.isArray(filters)) {
       filters.forEach((filterObj) => {
