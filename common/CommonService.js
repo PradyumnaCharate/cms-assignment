@@ -142,6 +142,29 @@ class Service {
     }
     return item;
   }
+  async getBySlug(slug, populate = []) {
+    const options = {
+      where: { slug },
+    };
+
+    if (populate && Array.isArray(populate)) {
+      options.include = populate
+        .map((includeItem) => {
+          if (typeof includeItem === "object" && includeItem.model) {
+            return {
+              model: includeItem.model,
+              attributes: includeItem.attributes || ["id", "name"],
+              as: includeItem.as,
+            };
+          }
+          return null;
+        })
+        .filter(Boolean);
+    }
+
+    const item = await this.model.findOne(options);
+    return item;
+  }
 }
 
 module.exports = Service;

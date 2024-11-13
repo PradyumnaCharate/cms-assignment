@@ -45,6 +45,15 @@ class Controller {
       res
     );
   });
+  getBySlug = catchAsyncError(async (req, res, next) => {
+    const item = await this.service.getBySlug(req.params.slug);
+    if (!item) {
+      return next(new ErrorHandler("Item not found", 404));
+    }
+    new responseHandler(item, "Item fetched successfully", 200).sendResponse(
+      res
+    );
+  });
 
   update = catchAsyncError(async (req, res, next) => {
     const { id } = req.params;
