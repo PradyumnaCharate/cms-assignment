@@ -28,7 +28,7 @@ Post.init(
     title: name("Post", true),
     authorId: {
       type: DataTypes.UUID,
-      allowNull: false,
+      allowNull: true,
     },
     slug: slug("Post"),
     content: content(),
