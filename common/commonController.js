@@ -56,11 +56,11 @@ class Controller {
   });
 
   update = catchAsyncError(async (req, res, next) => {
-    const { id } = req.params;
+    const { slug } = req.params;
     if (req.body.isDeleted) {
       return next(new ErrorHandler("Operation not allowed", 405));
     }
-    const updatedItem = await this.service.update(req.params.id, req.body);
+    const updatedItem = await this.service.update(slug, req.body);
     new responseHandler(
       updatedItem,
       "Item updated successfully",

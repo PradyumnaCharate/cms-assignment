@@ -118,9 +118,9 @@ class Service {
     return item;
   }
 
-  async update(id, data) {
+  async update(slug, data) {
     const [rowsUpdated, [updatedItem]] = await this.model.update(data, {
-      where: { id },
+      where: { slug },
       returning: true,
       individualHooks: true,
     });
